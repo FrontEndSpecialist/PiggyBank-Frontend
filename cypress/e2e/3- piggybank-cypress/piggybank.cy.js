@@ -50,4 +50,35 @@ describe("End to End tests", () => {
       );
     });
   })
+
+  it("maak een overboeking, valuta 'pond'", () => {
+    cy.visit("http://localhost:3000/login");
+
+    cy.contains(".login__account", "Sara").click();
+
+    cy.contains(".accounts__account-name", "Sara").click();
+
+    cy.visit("http://localhost:3000/transfer");
+
+    cy.get('select[name="toaccount"]').select("3");
+    cy.get('select[name="currency"]').select("GBP");
+    cy.get('input[name="amount"]').type("10");
+    cy.get('textarea[name="description"]').type("Sara -> Cem");
+
+    cy.intercept("POST", "http://localhost:8080/api/v1/transactions").as(
+      "submitTransfer"
+    );
+
+    cy.get("form").submit();
+
+    cy.wait("@submitTransfer").then(({ req }) => {
+      expect(response.statusCode).to.equal(200);
+
+      cy.get("h1").should("contain.text", "Gelukt!");
+      cy.get(".alert").should(
+        "contain.text",
+        "👍 Het is gelukt om £ 10 over te maken!"
+      );
+    });
+  })
 });
