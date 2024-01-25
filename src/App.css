@@ -1,0 +1,81 @@
+.app {
+  display: flex;
+  height: 100%;
+}
+
+.sidenav {
+  background-color: white;
+  min-width: 300px;
+  border-radius: 0 1rem 1rem 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+  font-weight: bold;
+  color: var(--primary);
+  border-radius: 1rem;
+  padding: 1rem 1rem;
+  font-size: 1.5rem;
+  font-family: 'Comfortaa', cursive;
+}
+
+.logo {
+  height: 48px;
+}
+
+main {
+  flex: 1;
+  margin: 4rem
+}
+
+.app__logout {
+  display: flex;
+  justify-content: center;
+}
+
+/**
+  Navigation
+**/
+nav {
+  flex: 1;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  margin: 1rem;
+}
+
+nav ul li a {
+  display: block;
+  color: #8f6e8e;
+  text-decoration: none;
+  border-left: 0.25rem solid #fff;
+  padding: 1rem;
+}
+
+nav ul li a:hover {
+  color: #8f6e8e;
+  border-left: 0.25rem solid var(--primary);
+  background-color: #f1f1f1;
+}
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+.not-found-container img {
+  width: 426px;
+  border-radius: 1rem;
+}

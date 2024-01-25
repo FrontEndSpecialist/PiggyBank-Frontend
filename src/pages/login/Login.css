@@ -1,0 +1,28 @@
+.login__account-selector {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login__account {
+    border: 1px solid #e2e2e2;
+    padding: 1rem;
+    border-radius: 1rem;
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    min-height: 150px;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: none;
+}
+
+.login__account img {
+    width: 100px;
+}
+
+.login__account:hover {
+    background-color: #e2e2e2;
+}

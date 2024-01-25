@@ -1,0 +1,21 @@
+.transaction {
+    display: flex;
+    align-items: center;
+}
+
+.transaction__amount {
+    color: white;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    display: inline-block;
+    min-width: 6rem;
+}
+
+.transaction__description {
+    margin-left: 1rem;
+    flex: 1;
+}
+
+.transaction__date {
+    color: #7d7d7d;
+}
