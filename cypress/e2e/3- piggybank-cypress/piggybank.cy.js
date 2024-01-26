@@ -90,4 +90,22 @@ describe("End to End tests", () => {
       .first()
       .should("have.text", `£ ${expectedPoundAmount}`);
   });
+
+  it("verander account naam", () => {
+    cy.visit("http://localhost:3000/login");
+
+    cy.contains(".login__account", "Melvin").click();
+
+    cy.contains(".accounts__account-name", "Melvin").click();
+
+    cy.visit("http://localhost:3000/settings");
+
+    const newAccountName = "Rekening van Tijn";
+    cy.get(".accountName-input").clear().type(newAccountName);
+    cy.get("form").submit();
+
+    cy.visit("http://localhost:3000/settings");
+
+    cy.get(".accountName-input").should("have.value", "Rekening van Tijn");
+  });
 });
