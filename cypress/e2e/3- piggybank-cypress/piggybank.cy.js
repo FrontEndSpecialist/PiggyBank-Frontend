@@ -49,13 +49,12 @@ describe("End to End tests", () => {
         "👍 Het is gelukt om € 50 over te maken!"
       );
     });
-  })
+  });
 
-  it("maak een overboeking, valuta 'pond'", () => {
+  it("maak een overboeking en controleer bedragen in GBP", () => {
     cy.visit("http://localhost:3000/login");
 
     cy.contains(".login__account", "Sara").click();
-
     cy.contains(".accounts__account-name", "Sara").click();
 
     cy.visit("http://localhost:3000/transfer");
@@ -71,7 +70,7 @@ describe("End to End tests", () => {
 
     cy.get("form").submit();
 
-    cy.wait("@submitTransfer").then(({ req }) => {
+    cy.wait("@submitTransfer").then(({ response }) => {
       expect(response.statusCode).to.equal(200);
 
       cy.get("h1").should("contain.text", "Gelukt!");
@@ -80,5 +79,15 @@ describe("End to End tests", () => {
         "👍 Het is gelukt om £ 10 over te maken!"
       );
     });
-  })
+
+    cy.visit("http://localhost:3000/transactions");
+
+    const euroAmount = 10;
+    const exchangeRate = 1.1;
+    const expectedPoundAmount = (euroAmount * exchangeRate).toFixed(2) * -1;
+
+    cy.get(".transaction__amount.amount-credit")
+      .first()
+      .should("have.text", `£ ${expectedPoundAmount}`);
+  });
 });
